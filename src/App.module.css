@@ -1,0 +1,76 @@
+.App {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.title {
+	align-self: flex-start;
+	margin-bottom: 16px;
+	color: #ffffff;
+	font-family: 'Jost', sans-serif;
+	font-size: 36px;
+	font-weight: 500;
+}
+
+.todoList {
+	width: 100%;
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.todoItem {
+	background-color: #ffffff;
+	padding: 14px 20px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.todoId {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	border: 2px solid #313131;
+	color: #313131;
+	background-color: #83d8d2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	font-size: 14px;
+	margin-right: 16px;
+	flex-shrink: 0;
+}
+
+.todoTitle {
+	color: #313131;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 25px;
+	height: 25px;
+	border: 5px solid gray;
+	border-radius: 50%;
+	border-left-color: transparent;
+	animation: loader 1s infinite;
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
