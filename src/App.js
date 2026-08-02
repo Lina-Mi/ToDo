@@ -23,9 +23,6 @@ export const App = () => {
 
 	const { searchTerm, setSearchTerm, debouncedSearch } = useSearch();
 
-	/* const filteredTodos = (todos, debouncedSearch);
-	const sortedTodos = (filteredTodos, isSorted); */
-
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
 			requestAddNewTask(newTaskTitle);
