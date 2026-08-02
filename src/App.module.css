@@ -7,27 +7,43 @@
 
 .title {
 	align-self: flex-start;
-	margin-bottom: 16px;
 	color: #ffffff;
 	font-family: 'Jost', sans-serif;
 	font-size: 36px;
 	font-weight: 500;
 }
 
+.headerRow {
+	width: 600px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+}
+
 .todoList {
-	width: 100%;
-	max-width: 600px;
+	width: 600px;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 }
 
+.menu {
+	margin-top: center;
+	width: auto;
+	background-color: transparent;
+	display: flex;
+	gap: 20px;
+	padding: 0;
+}
+
+.newTodo,
 .todoItem {
+	width: 600px;
 	background-color: #ffffff;
 	padding: 14px 20px;
 	display: flex;
 	align-items: center;
-	width: 100%;
 	box-sizing: border-box;
 }
 
@@ -51,6 +67,61 @@
 	color: #313131;
 	font-size: 16px;
 	font-weight: 400;
+	font-family: 'Jost', sans-serif;
+	flex-grow: 1;
+	text-align: left;
+}
+
+.searchInput {
+	width: 170px;
+	border: none;
+	outline: none;
+	background: #ffffff;
+	padding: 8px 14px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Jost', sans-serif;
+	color: #313131;
+}
+
+.todoTitleInput {
+	flex: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Jost', sans-serif;
+	color: #313131;
+	padding: 0;
+	margin: 0;
+}
+
+.sortButton,
+.deleteButton,
+.addButton {
+	background-color: #03433f;
+	color: #ffffff;
+	border: none;
+	padding: 8px 18px;
+	font-size: 14px;
+	font-weight: 500;
+	min-width: 85px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.sortButton:hover,
+.deleteButton:hover,
+.addButton:hover {
+	background-color: #175753;
+}
+
+.sortButton:disabled,
+.deleteButton:disabled,
+.addButton:disabled {
+	background-color: #002f2b;
+	cursor: not-allowed;
 }
 
 .loader {
