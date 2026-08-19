@@ -78,9 +78,10 @@ export const MainPage = () => {
 								<div className={styles.todoId}>{index + 1}</div>
 								<Link to={`/task/${id}`} className={styles.todoTitleLink}>
 									<div className={styles.todoTitle}>
-										{title.length > 70
+										{title}
+										{/* {title.length > 70
 											? title.slice(0, 70) + '...'
-											: title}
+											: title} */}
 									</div>
 								</Link>
 							</div>

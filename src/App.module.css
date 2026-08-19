@@ -97,6 +97,8 @@
 
 .todoTitleLink {
 	text-decoration: none;
+	flex: 1;
+	min-width: 0;
 }
 
 .todoTitle {
@@ -107,6 +109,9 @@
 	flex-grow: 1;
 	text-align: left;
 	padding-right: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .searchInput {
