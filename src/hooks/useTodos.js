@@ -37,6 +37,7 @@ export const useTodos = () => {
 				console.log('New task added:', newTodo);
 				setTodos([...todos, newTodo]);
 				setRefreshTodos(!refreshTodos);
+				return newTodo;
 			})
 			.finally(() => setIsCreating(false));
 	};
@@ -50,9 +51,13 @@ export const useTodos = () => {
 			body: JSON.stringify({
 				title: editedTitle,
 			}),
-		}).then(() => {
-			setRefreshTodos(!refreshTodos);
-		});
+		})
+			.then((response) => response.json())
+			.then((updatedTask) => {
+				setRefreshTodos(!refreshTodos);
+
+				return updatedTask;
+			});
 	};
 
 	const requestDeleteTask = (id) => {

@@ -21,6 +21,15 @@
 	box-sizing: border-box;
 }
 
+.notFoundHeader {
+	align-items: center;
+	color: #002f2b;
+	font-family: 'Jost', sans-serif;
+	font-size: 84px;
+	font-weight: 500;
+	margin: 0px 0px 0px 0px;
+}
+
 .todoList {
 	width: 600px;
 	display: flex;
@@ -40,10 +49,33 @@
 .newTodo,
 .todoItem {
 	width: 600px;
+	min-height: 60px;
+	height: auto;
 	background-color: #ffffff;
 	padding: 14px 20px;
 	display: flex;
 	align-items: center;
+	box-sizing: border-box;
+}
+
+.notFoundContainer {
+	width: auto;
+	min-height: 60px;
+	height: auto;
+	background-color: #ffffff;
+	padding: 14px 20px;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.taskPageItem {
+	width: 600px;
+	min-height: 120px;
+	background-color: #ffffff;
+	padding: 14px 20px;
+	display: flex;
+	flex-direction: column;
 	box-sizing: border-box;
 }
 
@@ -63,6 +95,10 @@
 	flex-shrink: 0;
 }
 
+.todoTitleLink {
+	text-decoration: none;
+}
+
 .todoTitle {
 	color: #313131;
 	font-size: 16px;
@@ -70,6 +106,7 @@
 	font-family: 'Jost', sans-serif;
 	flex-grow: 1;
 	text-align: left;
+	padding-right: 20px;
 }
 
 .searchInput {
@@ -97,6 +134,48 @@
 	margin: 0;
 }
 
+.taskPageInput {
+	width: 100%;
+	flex: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Jost', sans-serif;
+	color: #313131;
+	padding: 0;
+	margin: 0;
+	min-height: 60px;
+}
+
+.taskPageTitle {
+	color: #313131;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Jost', sans-serif;
+	flex-grow: 1;
+	text-align: left;
+	min-height: 40px;
+}
+
+.taskContent {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.taskActions {
+	display: flex;
+	gap: 20px;
+	margin-left: auto;
+	margin-top: auto;
+	flex-shrink: 0;
+}
+
+.backButton,
+.notFoundButton,
 .sortButton,
 .deleteButton,
 .addButton {
@@ -111,12 +190,21 @@
 	transition: background-color 0.2s;
 }
 
+.backButton {
+	align-self: flex-end;
+	margin-top: 20px;
+}
+
+.backButton:hover,
+.notFoundButton:hover,
 .sortButton:hover,
 .deleteButton:hover,
 .addButton:hover {
 	background-color: #175753;
 }
 
+.backButton:disabled,
+.notFoundButton:disabled,
 .sortButton:disabled,
 .deleteButton:disabled,
 .addButton:disabled {
