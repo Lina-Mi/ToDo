@@ -1,0 +1,21 @@
+.searchInput {
+	width: 170px;
+	border: none;
+	outline: none;
+	background: #ffffff;
+	padding: 8px 14px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Jost', sans-serif;
+	color: #313131;
+}
+
+/* .menu {
+	margin-top: center;
+	width: auto;
+	background-color: transparent;
+	display: flex;
+	gap: 20px;
+	padding: 0;
+}
+ */

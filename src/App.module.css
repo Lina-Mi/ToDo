@@ -5,14 +5,6 @@
 	align-items: center;
 }
 
-.title {
-	align-self: flex-start;
-	color: #ffffff;
-	font-family: 'Jost', sans-serif;
-	font-size: 36px;
-	font-weight: 500;
-}
-
 .headerRow {
 	width: 600px;
 	display: flex;
@@ -20,14 +12,6 @@
 	align-items: center;
 	box-sizing: border-box;
 }
-
-.todoList {
-	width: 600px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-}
-
 .menu {
 	margin-top: center;
 	width: auto;
@@ -37,111 +21,9 @@
 	padding: 0;
 }
 
-.newTodo,
-.todoItem {
+.todoList {
 	width: 600px;
-	background-color: #ffffff;
-	padding: 14px 20px;
 	display: flex;
-	align-items: center;
-	box-sizing: border-box;
-}
-
-.todoId {
-	width: 26px;
-	height: 26px;
-	border-radius: 50%;
-	border: 2px solid #313131;
-	color: #313131;
-	background-color: #83d8d2;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: 500;
-	font-size: 14px;
-	margin-right: 16px;
-	flex-shrink: 0;
-}
-
-.todoTitle {
-	color: #313131;
-	font-size: 16px;
-	font-weight: 400;
-	font-family: 'Jost', sans-serif;
-	flex-grow: 1;
-	text-align: left;
-}
-
-.searchInput {
-	width: 170px;
-	border: none;
-	outline: none;
-	background: #ffffff;
-	padding: 8px 14px;
-	font-size: 16px;
-	font-weight: 400;
-	font-family: 'Jost', sans-serif;
-	color: #313131;
-}
-
-.todoTitleInput {
-	flex: 1;
-	border: none;
-	outline: none;
-	background: transparent;
-	font-size: 16px;
-	font-weight: 400;
-	font-family: 'Jost', sans-serif;
-	color: #313131;
-	padding: 0;
-	margin: 0;
-}
-
-.sortButton,
-.deleteButton,
-.addButton {
-	background-color: #03433f;
-	color: #ffffff;
-	border: none;
-	padding: 8px 18px;
-	font-size: 14px;
-	font-weight: 500;
-	min-width: 85px;
-	cursor: pointer;
-	transition: background-color 0.2s;
-}
-
-.sortButton:hover,
-.deleteButton:hover,
-.addButton:hover {
-	background-color: #175753;
-}
-
-.sortButton:disabled,
-.deleteButton:disabled,
-.addButton:disabled {
-	background-color: #002f2b;
-	cursor: not-allowed;
-}
-
-.loader {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 25px;
-	height: 25px;
-	border: 5px solid gray;
-	border-radius: 50%;
-	border-left-color: transparent;
-	animation: loader 1s infinite;
-}
-
-@keyframes loader {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
+	flex-direction: column;
+	gap: 20px;
 }
