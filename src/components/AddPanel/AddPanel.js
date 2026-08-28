@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useTodos } from '../../hooks/useTodos';
 import { Button } from '../Buttons/Buttons';
 import styles from './AddPanel.module.css';
 
-export const AddPanel = () => {
+export const AddPanel = ({ requestAddNewTask, isCreating }) => {
 	const [newTaskTitle, setNewTaskTitle] = useState('');
-	const { isCreating, requestAddNewTask } = useTodos();
 
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {

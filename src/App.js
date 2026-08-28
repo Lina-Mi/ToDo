@@ -1,7 +1,5 @@
 import { useState } from 'react';
-
 import styles from './App.module.css';
-
 import { useTodos } from './hooks/useTodos';
 
 import {
@@ -13,14 +11,12 @@ import {
 import { Header, SearchSort, AddPanel, TodoItem, Loader } from './components';
 
 export const App = () => {
-	const { todos, isLoading } = useTodos();
+	const { todos, isLoading, requestAddNewTask, isCreating } = useTodos();
 
 	const { searchTerm, setSearchTerm, debouncedSearch } = useSearch();
-
 	const [isSorted, setIsSorted] = useState(false);
 
 	const filtered = filteredTodos(todos, debouncedSearch);
-
 	const sorted = sortedTodos(filtered, isSorted);
 
 	if (isLoading) {
@@ -41,7 +37,7 @@ export const App = () => {
 				</div>
 			</div>
 			<div className={styles.todoList}>
-				<AddPanel />
+				<AddPanel requestAddNewTask={requestAddNewTask} isCreating={isCreating} />
 
 				{sorted.map(({ id, title }, index) => (
 					<TodoItem key={id} todo={{ id, title }} index={index} />
