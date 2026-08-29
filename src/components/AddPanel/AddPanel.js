@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { TodosContext } from '../../context/TodosContext';
 import { Button } from '../Buttons/Buttons';
 import styles from './AddPanel.module.css';
 
-export const AddPanel = ({ requestAddNewTask, isCreating }) => {
+export const AddPanel = () => {
+	const { requestAddNewTask, isCreating } = useContext(TodosContext);
+
 	const [newTaskTitle, setNewTaskTitle] = useState('');
 
 	const handleKeyDown = (e) => {

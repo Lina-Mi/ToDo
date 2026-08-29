@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { TodosContext } from '../../context/TodosContext';
 import { Button } from '../Buttons/Buttons';
 import styles from './SearchSort.module.css';
 
@@ -38,7 +39,9 @@ export const useSearch = () => {
 	};
 };
 
-export const SearchSort = ({ searchTerm, setSearchTerm, isSorted, setIsSorted }) => {
+export const SearchSort = () => {
+	const { searchTerm, setSearchTerm, isSorted, setIsSorted } = useContext(TodosContext);
+
 	return (
 		<div>
 			<input
