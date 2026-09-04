@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchTerm, setDebouncedSearch, setSorted } from '../../actions';
+import { selectSearchTerm, selectDebouncedSearch, selectIsSorted } from '../../selectors';
 import { Button } from '../Buttons/Buttons';
 import styles from './SearchSort.module.css';
 
@@ -20,21 +23,34 @@ export const sortedTodos = (todos, isSorted) => {
 };
 
 export const useSearch = () => {
-	const [searchTerm, setSearchTerm] = useState('');
-	const [debouncedSearch, setDebouncedSearch] = useState('');
+	const dispatch = useDispatch();
+
+	const searchTerm = useSelector(selectSearchTerm);
+	const debouncedSearch = useSelector(selectDebouncedSearch);
+	const isSorted = useSelector(selectIsSorted);
+
+	const handlesetSearchTerm = (value) => {
+		dispatch(setSearchTerm(value));
+	};
+
+	const handleSetIsSorted = (value) => {
+		dispatch(setSorted(value));
+	};
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			setDebouncedSearch(searchTerm);
+			dispatch(setDebouncedSearch(searchTerm));
 		}, 1000);
 
 		return () => clearTimeout(timer);
-	}, [searchTerm]);
+	}, [searchTerm, dispatch]);
 
 	return {
 		searchTerm,
-		setSearchTerm,
+		setSearchTerm: handlesetSearchTerm,
 		debouncedSearch,
+		isSorted,
+		setIsSorted: handleSetIsSorted,
 	};
 };
 

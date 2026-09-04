@@ -1,23 +1,48 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './App.module.css';
-import { useTodos } from './hooks/useTodos';
 
 import {
-	useSearch,
 	filteredTodos,
 	sortedTodos,
+	useSearch,
 } from './components/SearchSort/SearchSort';
+
+import {
+	selectTodos,
+	selectLoading,
+	selectSearchTerm,
+	selectDebouncedSearch,
+	selectIsSorted,
+} from './selectors';
+
+import {
+	getTodos,
+	requestAddNewTask,
+	requestUpdateTask,
+	requestDeleteTask,
+} from './actions';
 
 import { Header, SearchSort, AddPanel, TodoItem, Loader } from './components';
 
 export const App = () => {
-	const { todos, isLoading, requestAddNewTask, isCreating } = useTodos();
+	const todos = useSelector(selectTodos);
+	const isLoading = useSelector(selectLoading);
 
-	const { searchTerm, setSearchTerm, debouncedSearch } = useSearch();
-	const [isSorted, setIsSorted] = useState(false);
+	const searchTerm = useSelector(selectSearchTerm);
+	const debouncedSearch = useSelector(selectDebouncedSearch);
+	const isSorted = useSelector(selectIsSorted);
+
+	const dispatch = useDispatch();
+
+	const { setSearchTerm, setIsSorted } = useSearch();
 
 	const filtered = filteredTodos(todos, debouncedSearch);
 	const sorted = sortedTodos(filtered, isSorted);
+
+	useEffect(() => {
+		dispatch(getTodos(searchTerm, isSorted));
+	}, [searchTerm, isSorted, dispatch]);
 
 	if (isLoading) {
 		return <Loader />;
@@ -37,10 +62,15 @@ export const App = () => {
 				</div>
 			</div>
 			<div className={styles.todoList}>
-				<AddPanel requestAddNewTask={requestAddNewTask} isCreating={isCreating} />
-
+				<AddPanel requestAddNewTask={requestAddNewTask} />
 				{sorted.map(({ id, title }, index) => (
-					<TodoItem key={id} todo={{ id, title }} index={index} />
+					<TodoItem
+						key={id}
+						todo={{ id, title }}
+						index={index}
+						requestUpdateTask={requestUpdateTask}
+						requestDeleteTask={requestDeleteTask}
+					/>
 				))}
 			</div>
 		</div>

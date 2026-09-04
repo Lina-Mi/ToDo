@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from '../Buttons/Buttons';
 import styles from './AddPanel.module.css';
 
-export const AddPanel = ({ requestAddNewTask, isCreating }) => {
+export const AddPanel = ({ requestAddNewTask }) => {
 	const [newTaskTitle, setNewTaskTitle] = useState('');
+	const dispatch = useDispatch();
 
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
-			requestAddNewTask(newTaskTitle);
+			dispatch(requestAddNewTask(newTaskTitle));
 			setNewTaskTitle('');
 		}
 	};
@@ -24,9 +26,8 @@ export const AddPanel = ({ requestAddNewTask, isCreating }) => {
 				onKeyDown={handleKeyDown}
 			/>
 			<Button
-				disabled={isCreating}
 				onClick={() => {
-					requestAddNewTask(newTaskTitle);
+					dispatch(requestAddNewTask(newTaskTitle));
 					setNewTaskTitle('');
 				}}
 			>
