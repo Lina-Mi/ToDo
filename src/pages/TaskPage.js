@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from '../App.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useTodos } from '../hooks/useTodos';
 import { NotFoundPage } from './NotFoundPage';
 
 export const TaskPage = ({ requestDeleteTask, requestUpdateTask }) => {
