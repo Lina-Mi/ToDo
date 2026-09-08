@@ -1,4 +1,11 @@
-import { setTodos, addTodo, updateTodo, deleteTodo, setLoading } from './actions';
+import {
+	setTodos,
+	addTodo,
+	updateTodo,
+	deleteTodo,
+	setLoading,
+	setError,
+} from './actions';
 
 export const getTodos = () => (dispatch) => {
 	dispatch(setLoading(true));
@@ -10,6 +17,10 @@ export const getTodos = () => (dispatch) => {
 		.then((loadedTodos) => {
 			dispatch(setTodos(loadedTodos));
 			dispatch(setLoading(false));
+		})
+		.catch((error) => {
+			dispatch(setLoading(false));
+			dispatch(setError('Loading error'));
 		});
 };
 
@@ -27,6 +38,9 @@ export const requestAddNewTask = (newTaskTitle) => (dispatch) => {
 		.then((response) => response.json())
 		.then((newTodo) => {
 			dispatch(addTodo(newTodo));
+		})
+		.catch((error) => {
+			dispatch(setError('Error'));
 		});
 };
 
@@ -43,13 +57,20 @@ export const requestUpdateTask = (id, editedTitle) => (dispatch) => {
 		.then((response) => response.json())
 		.then((updatedTodo) => {
 			dispatch(updateTodo(updatedTodo));
+		})
+		.catch((error) => {
+			dispatch(setError('Error'));
 		});
 };
 
 export const requestDeleteTask = (id) => (dispatch) => {
 	fetch(`http://localhost:3001/todos/${id}`, {
 		method: 'DELETE',
-	}).then(() => {
-		dispatch(deleteTodo(id));
-	});
+	})
+		.then(() => {
+			dispatch(deleteTodo(id));
+		})
+		.catch((error) => {
+			dispatch(setError('Error'));
+		});
 };
