@@ -1,5 +1,5 @@
 export const filteredTodos = (todos, debouncedSearch) => {
-	return todos.filter(({ title }) => title.includes(debouncedSearch));
+	return todos.filter(({ title }) => title.toLowerCase().includes(debouncedSearch));
 };
 
 export const sortedTodos = (todos, isSorted) => {

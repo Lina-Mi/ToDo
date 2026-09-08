@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTodos } from '../hooks/useTodos';
 import { NotFoundPage } from './NotFoundPage';
 
-export const TaskPage = () => {
+export const TaskPage = ({ requestDeleteTask, requestUpdateTask }) => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
@@ -13,8 +13,6 @@ export const TaskPage = () => {
 
 	const [editingTodoId, setEditingTodoId] = useState(null);
 	const [editedTitle, setEditedTitle] = useState('');
-
-	const { requestDeleteTask, requestUpdateTask } = useTodos();
 
 	useEffect(() => {
 		if (id === undefined) return;
@@ -112,7 +110,11 @@ export const TaskPage = () => {
 						</button>
 						<button
 							className={styles.deleteButton}
-							onClick={() => requestDeleteTask(id)}
+							onClick={() => {
+								requestDeleteTask(id).then(() => {
+									navigate('/');
+								});
+							}}
 						>
 							Delete
 						</button>

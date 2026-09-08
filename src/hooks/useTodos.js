@@ -7,6 +7,8 @@ export const useTodos = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isCreating, setIsCreating] = useState(false);
 
+	const [error, setError] = useState(null);
+
 	useEffect(() => {
 		setIsLoading(true);
 
@@ -17,6 +19,7 @@ export const useTodos = () => {
 			.then((loadedTodos) => {
 				setTodos(loadedTodos);
 			})
+			.catch(() => setError('Loading error'))
 			.finally(() => setIsLoading(false));
 	}, [refreshTodos]);
 
@@ -34,11 +37,11 @@ export const useTodos = () => {
 		})
 			.then((response) => response.json())
 			.then((newTodo) => {
-				console.log('New task added:', newTodo);
 				setTodos([...todos, newTodo]);
 				setRefreshTodos(!refreshTodos);
 				return newTodo;
 			})
+			.catch(() => setError('Error'))
 			.finally(() => setIsCreating(false));
 	};
 
@@ -57,20 +60,24 @@ export const useTodos = () => {
 				setRefreshTodos(!refreshTodos);
 
 				return updatedTask;
-			});
+			})
+			.catch(() => setError('Error'));
 	};
 
 	const requestDeleteTask = (id) => {
 		fetch(`http://localhost:3001/todos/${id}`, {
 			method: 'DELETE',
-		}).then(() => {
-			setRefreshTodos(!refreshTodos);
-		});
+		})
+			.then(() => {
+				setRefreshTodos(!refreshTodos);
+			})
+			.catch(() => setError('Error'));
 	};
 	return {
 		todos,
 		isLoading,
 		isCreating,
+		error,
 
 		requestAddNewTask,
 		requestDeleteTask,
