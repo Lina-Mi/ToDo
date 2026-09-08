@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../App.module.css';
-
-import { useTodos } from '../hooks/useTodos';
 import { useSearch } from '../hooks/useSearch';
 
 import { filteredTodos, sortedTodos } from '../utils/Sort';
 
-export const MainPage = () => {
+export const MainPage = ({
+	todos,
+	isLoading,
+	isCreating,
+	requestAddNewTask,
+	requestDeleteTask,
+}) => {
 	const [newTaskTitle, setNewTaskTitle] = useState('');
 	const [isSorted, setIsSorted] = useState(false);
-
-	const { todos, isLoading, isCreating, requestAddNewTask } = useTodos();
 
 	const { searchTerm, setSearchTerm, debouncedSearch } = useSearch();
 
